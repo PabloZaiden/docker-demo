@@ -1,0 +1,10 @@
+version: '2'
+services:
+  queue-consumer:
+    build: ./queue-consumer
+ 
+  queue-loader:
+    build: ./queue-loader
+ 
+  queue-result:
+    build: ./queue-result
