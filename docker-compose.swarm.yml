@@ -1,10 +1,10 @@
 version: '2'
 services:
   queue-consumer:
-    image: pablozaiden/workshop-queue-consumer
+    image: pablozaiden/docker-demo:consumer
 
   queue-loader:
-    image: pablozaiden/workshop-queue-loader
+    image: pablozaiden/docker-demo:loader
 
   queue-result:
-    image: pablozaiden/workshop-queue-result
+    image: pablozaiden/docker-demo:result
