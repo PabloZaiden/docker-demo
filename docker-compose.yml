@@ -2,18 +2,32 @@ version: '2'
 services:
   queue-consumer:
     build: ./queue-consumer
-    ports:
-      - "8000:5000"
+    depends_on:
+      - restmq
+      - webdis
+    environment:
+      - RESTMQ_URL=http://restmq:8888/
+      - WEBDIS_URL=http://webdis:7379/
 
   queue-loader:
     build: ./queue-loader
+    depends_on:
+      - restmq
+      - webdis
     ports:
-      - "8001:3000"
+      - "8000:3000"
+    environment:
+      - RESTMQ_URL=http://restmq:8888/
 
   queue-result:
     build: ./queue-result
+    depends_on:
+      - webdis
     ports:
-      - "8002:3000"
+      - "8001:3000"
+    environment:
+      - WEBDIS_URL=http://webdis:7379/
+
   
   webdis:
     image: anapsix/webdis

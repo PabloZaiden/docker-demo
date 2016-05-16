@@ -2,6 +2,8 @@ var express = require('express');
 var os = require('os');
 var router = express.Router();
 var request = require('request');
+var conf = require('nconf').env();
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -23,6 +25,12 @@ router.post('/', function (req, res, next) {
     };
     
     var queueURL = "http://localhost:8888/";
+    var confQueueURL = conf.get('RESTMQ_URL');
+  
+    if (confQueueURL != null) {
+      queueURL = confQueueURL
+    }
+    
     var queueName = "myQueue";
     var postURL = queueURL + "q/" + queueName;
     var content = new Buffer(JSON.stringify(element), 'utf8').toString('base64');
@@ -32,10 +40,12 @@ router.post('/', function (req, res, next) {
         form: {value: content} 
       },
       function (error, response, body) {
-        if (error || response.statusCode != 200) {
-          console.log("Status code: " + response.statusCode);
-          console.log("Error: " + error);
-          console.log(body);
+        if (error || (response != undefined && response.statusCode != 200)) {
+          if (response != undefined) {
+            console.log("Status code: " + response.statusCode);
+            console.log("Error: " + error);
+          }
+          console.log("body: " + body);
         } 
       });
   });

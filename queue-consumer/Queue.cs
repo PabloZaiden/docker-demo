@@ -9,28 +9,21 @@ namespace QueueConsumer
 {
     public class Queue
     {   
-        private const string DefaultQueueURL = "http://localhost:8888/";
+        public const string DefaultQueueURL = "http://localhost:8888/";
         private string QueueURL;
-        
+
         public Queue() : this(DefaultQueueURL) {
-            
+
         }
-        
+
         public Queue(String url) {
+            if (String.IsNullOrWhiteSpace(url)) {
+                url = DefaultQueueURL;
+            }
+
             QueueURL = url;
         }
-       
-       /*
-        public async Task Put(string queueName, JObject element) {
-            using (var client = new HttpClient()) {
 
-                var base64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(element)));
-                StringContent content = new StringContent(base64);
-                await client.PostAsync(QueueURL + "q/" + queueName, content);
-            }    
-        }
-        */
-        
         public async Task<JObject> Get(string queueName)
         {
             using (var client = new HttpClient()) {

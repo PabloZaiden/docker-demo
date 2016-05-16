@@ -15,6 +15,9 @@ namespace QueueConsumer
         }
         
         public Webdis(String url) {
+            if (String.IsNullOrWhiteSpace(url)) {
+                url = DefaultWebdisURL;
+            }
             WebdisURL = url;
         }
         
@@ -26,33 +29,5 @@ namespace QueueConsumer
                 await client.PutAsync(url, binaryContent);
             }    
         }
-        
-        /*
-        public async Task<String[]> GetAllElements(string listName) 
-        {
-            using (var client = new HttpClient()) {
-                var serialized = await client.GetStringAsync(WebdisURL + "lrange/" + listName + "/0/-1");
-                
-                if (!String.IsNullOrWhiteSpace(serialized)) {
-                    var obj = JObject.Parse(serialized);
-                    
-                    var list = obj["lrange"].Values<String>();
-                    
-                    return list.ToArray();
-                } else {
-                    return null;
-                }
-            }
-        }
-        
-        public async Task<Byte[]> GetElement(string listName, int index) 
-        {
-            using (var client = new HttpClient()) {
-                var content = await client.GetByteArrayAsync(WebdisURL + "lrange/" + listName + "/" + index + "/" + index + "?type=image");
-                return content;
-            }
-        }
-        */
-        
     }   
 }

@@ -12,25 +12,15 @@ namespace QueueConsumer
             var task = Task.Run(ReadFromQueue);
             task.GetAwaiter().GetResult();
         }
-        
-        /*
-        private static async Task AddToQueue(string name, string url)
-        {
-            Queue queue = new Queue();
-            
-            JObject obj = new JObject();
-            obj["Name"] = name;
-            obj["URL"] = url;
-            
-            System.Console.WriteLine("Adding element to queue: " + name);
-            await queue.Put("myQueue", obj);
-        }
-        */
-        
+       
         private static async Task ReadFromQueue() 
         {
-            Queue queue = new Queue(); // uses default queue: http://localhost:8888
-            Webdis webdis = new Webdis();
+            var envQueueURL = Environment.GetEnvironmentVariable("RESTMQ_URL");
+            var envWebdisURL = Environment.GetEnvironmentVariable("WEBDIS_URL");
+            
+            Queue queue = new Queue(envQueueURL); // uses default queue: http://localhost:8888/
+            Webdis webdis = new Webdis(envWebdisURL); //uses default webdis: http://localhost:7379/
+            
             while (true) {
                 dynamic element;
                 System.Console.WriteLine("Waiting for new elements...");

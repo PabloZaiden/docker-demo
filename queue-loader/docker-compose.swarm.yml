@@ -1,0 +1,10 @@
+version: '2'
+services:
+  queue-consumer:
+    image: pablozaiden/workshop-queue-consumer
+
+  queue-loader:
+    image: pablozaiden/workshop-queue-loader
+
+  queue-result:
+    image: pablozaiden/workshop-queue-result
