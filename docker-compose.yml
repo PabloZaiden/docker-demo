@@ -1,0 +1,24 @@
+version: '2'
+services:
+  queue-consumer:
+    build: ./queue-consumer
+    ports:
+      - "8000:5000"
+
+  queue-loader:
+    build: ./queue-loader
+    ports:
+      - "8001:3000"
+
+  queue-result:
+    build: ./queue-result
+    ports:
+      - "8002:3000"
+  
+  webdis:
+    image: anapsix/webdis
+    environment:
+      - LOCAL_REDIS=true
+
+  restmq:
+    image: pablozaiden/restmq
