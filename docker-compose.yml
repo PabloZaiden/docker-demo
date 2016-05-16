@@ -1,7 +1,6 @@
 version: '2'
 services:
   queue-consumer:
-    build: ./queue-consumer
     depends_on:
       - restmq
       - webdis
@@ -10,7 +9,6 @@ services:
       - WEBDIS_URL=http://webdis:7379/
 
   queue-loader:
-    build: ./queue-loader
     depends_on:
       - restmq
       - webdis
@@ -20,7 +18,6 @@ services:
       - RESTMQ_URL=http://restmq:8888/
 
   queue-result:
-    build: ./queue-result
     depends_on:
       - webdis
     ports:
