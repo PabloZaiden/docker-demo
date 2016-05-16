@@ -1,7 +1,6 @@
 FROM microsoft/dotnet:1.0.0-preview1
 WORKDIR /app
 
-COPY ./NuGet.Config /app/NuGet.Config
 COPY ./project.json /app/project.json
 
 RUN dotnet restore && \
