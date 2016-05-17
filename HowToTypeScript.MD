@@ -5,7 +5,7 @@
  
 ```    
     
-2. Install Typings and package-to-tsd
+2. Install tsd and package-to-tsd
 
  
 ```    
