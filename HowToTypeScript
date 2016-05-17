@@ -2,7 +2,7 @@
     
     npm install -g typescript
     
-2) Install Typings and package-to-typings
+2) Install Typings and package-to-tsd
     
     npm install -g tsd
     npm install -g package-to-tsd
@@ -28,3 +28,5 @@
 
     Modify launch.json)
         Set configurations.sourceMaps = true
+        
+7) Change the .js files with the .ts
