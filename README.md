@@ -35,3 +35,11 @@ This app exposes the port 5000
 A Node.js Express front-end to see the images that were processed from the queue
 
 This app exposes the port 3000
+
+
+## How to use
+To start the app for development (builds each image before running):
+`docker-compose -f docker-compose.yml -f docker-compose.dev.yml up`
+
+To start the app in a production environment (compatible with docker swarm. Uses images from dockerhub):
+`docker-compose -f docker-compose.yml -f docker-compose.swarm.yml up`
