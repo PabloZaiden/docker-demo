@@ -2,7 +2,7 @@
 var express = require('express');
 var os = require('os');
 var nconf = require('nconf');
-var Queue = require('./queue');
+var queue_1 = require('./queue');
 var conf = nconf.env();
 var router = express.Router();
 /* GET home page. */
@@ -21,7 +21,7 @@ router.post('/', function (req, res, next) {
             "URL": url
         };
         var confQueueURL = conf.get('RESTMQ_URL');
-        var queue = new Queue.Queue(confQueueURL);
+        var queue = new queue_1.Queue(confQueueURL);
         var queueName = "myQueue";
         queue.add(queueName, element);
     });

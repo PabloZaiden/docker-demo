@@ -3,7 +3,7 @@ import os = require('os');
 import request = require('request');
 import nconf = require('nconf');
 
-import Queue = require('./queue');
+import { Queue } from './queue';
 
 let conf = nconf.env();
 let router = express.Router();
@@ -29,7 +29,7 @@ router.post('/', function (req : express.Request, res : express.Response, next :
 
     let confQueueURL = conf.get('RESTMQ_URL');
 
-    let queue = new Queue.Queue(confQueueURL);
+    let queue = new Queue(confQueueURL);
     let queueName = "myQueue";
     
     queue.add(queueName, element);
