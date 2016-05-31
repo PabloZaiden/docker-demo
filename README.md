@@ -38,9 +38,12 @@ This app exposes the port 3000
 
 
 ## How to use
+
+### Development
 To start the app for development (builds each image before running):
 `docker-compose -f docker-compose.yml -f docker-compose.dev.yml up`
 
+### Production
 To start the app in a production environment (compatible with docker swarm. Uses images from dockerhub):
 `docker-compose -f docker-compose.yml -f docker-compose.swarm.yml up`
 
