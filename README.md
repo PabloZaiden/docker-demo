@@ -43,3 +43,5 @@ To start the app for development (builds each image before running):
 
 To start the app in a production environment (compatible with docker swarm. Uses images from dockerhub):
 `docker-compose -f docker-compose.yml -f docker-compose.swarm.yml up`
+
+When started with `docker-compose`, `queue-loader` is exposed in port `8000` and `queue-result` is exposed in port `8001`
